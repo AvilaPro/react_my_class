@@ -1,4 +1,14 @@
+"use client"
+import { useState } from "react";
+
 export function News() {
+
+    const [saldo, setSaldo] = useState(0);
+
+    function handleClick() {
+        setSaldo(saldo + 1);
+    }
+
     let noticias = [
         {
             id: 0,
@@ -15,7 +25,7 @@ export function News() {
     ]
 
     const newsComponents = noticias.map(el =>
-        <div key={el.id}>
+        <div key={el.id} style={{width: '49%', marginRight: '1em'}}>
             <div style={{ height: '80%', backgroundImage: `url(${el.picture})`, backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat', width: '100%' }}></div>
             <p style={{ color: "fuchsia", textAlign: 'center' }}>{el.author}</p>
             <h5 style={{ textAlign: 'center' }}>{el.title}</h5>
@@ -29,6 +39,8 @@ export function News() {
                 <div style={{ display: 'flex', justifyContent: 'space-between', padding:'0 15%', height:'80vh', width:'100%', boxSizing:'border-box' }}>
                     {newsComponents}
                 </div>
+                <button onClick={handleClick}>Sumale uno al saldo</button><br></br>
+                <p>Valor del saldo: {saldo}</p>
             </div>
         </>
     )
