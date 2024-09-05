@@ -3,6 +3,7 @@ import styles from "./page.module.css";
 import Header from "./components/header";
 import ButtonsBoots from "./components/buttonsBoots";
 import Featuretail from "./components/featureTail";
+import Products from "./components/products/products";
 
 function Adsbar() {
   return(
@@ -21,12 +22,16 @@ function Example() {
 }
 
 export default function Home() {
+  //valor de variable prop que se enviará al componente hijo 'Products'
+  let titleProductsSize = '3em'
   return (
     <>
       <Adsbar />
       <Header />
-      <ButtonsBoots />
-      <Featuretail />
+      {/* Se envia el valor de la propiedad titleProductsSize al componente Products */}
+      <Products titleSize={titleProductsSize} />
+      {/* <ButtonsBoots /> */}
+      {/* <Featuretail /> */}
     </>
   );
 }
