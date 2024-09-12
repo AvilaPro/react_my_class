@@ -1,10 +1,20 @@
+'use client'
 import Image from 'next/image';
 import styleProduct from './products.module.css'
+import { useState } from 'react';
+import { useImmer } from 'use-immer';
 
 //En la definicion del componente podemos definir props con valores por defecto en caso de no recibir de algun componente padre la informacion requerida
 //En este caso, se declara la prop titleSize con un valor por defecto.
 export default function Products({ titleSize = '2em' }) {
-  const products = {
+  //variables de estado para practicar el capitulo 10
+  const [cantAComprar, setCantAComprar] = useState(0);
+  //variable de estado que almacena el nombre del comprador
+  const [nombreComprador, setNombreComprador] = useState('');
+  //variable de estado que almacena si el usuario es vip o no
+  const [esVip, setEsVip] = useState(false);
+
+  const [products, setProducts] = useImmer({
     title: 'Amplía tu mundo con Meta Quest 3',
     productsArray: [
       {
@@ -50,6 +60,10 @@ export default function Products({ titleSize = '2em' }) {
         price: 0
       }
     ]
+  })
+
+  function sumarCompra() {
+    setCantAComprar(cantAComprar + 1);
   }
 
   //Ejemplo de filtrado
@@ -58,7 +72,13 @@ export default function Products({ titleSize = '2em' }) {
   //Ejemplo de mapeo de los datos
   const productsArrayMapped = filteredProducts.map((product) => (
       (product.qty > 0) ?
-      (<div key={product.id}>
+      (<div key={product.id} onClick={(e) => {
+        sumarCompra();
+        console.log(e);
+        setProducts(producto => {
+          producto.productsArray[`${product.id - 1}`].qty = producto.productsArray[`${product.id - 1}`].qty - 1;
+        })
+      }}>
         <Image src={product.img} alt={product.name} width={150} height={150} /><figcaption>{product.name}</figcaption><figcaption>Quantity: {product.qty}</figcaption>
       </div>):
         null
@@ -84,6 +104,9 @@ export default function Products({ titleSize = '2em' }) {
             ):
             null
           } */}
+        </div>
+        <div className={styleProduct.boxCantidadAComprar}>
+          Qty Buy: {cantAComprar}
         </div>
       </div>
     </>

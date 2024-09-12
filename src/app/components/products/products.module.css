@@ -1,12 +1,25 @@
 .containerProducts{
     height: 30vh;
+    padding-top: 10vh;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    height: 40vh;
 }
 .containerCards{
     display: flex;
     width: 80%;
     justify-content: space-around;
+}
+.boxCantidadAComprar{
+    width: 10%;
+    position: absolute;
+    top: 5vh;
+    right: 0;
+    border: solid rgb(68, 68, 221) 1px;
+    padding: 10px;
+    border-radius: 8px;
 }

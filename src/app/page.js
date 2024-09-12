@@ -4,6 +4,7 @@ import Header from "./components/header";
 import ButtonsBoots from "./components/buttonsBoots";
 import Featuretail from "./components/featureTail";
 import Products from "./components/products/products";
+import Metaq3 from "./components/metaQ3/metaq3";
 
 function Adsbar() {
   return(
@@ -30,6 +31,7 @@ export default function Home() {
       <Header />
       {/* Se envia el valor de la propiedad titleProductsSize al componente Products */}
       <Products titleSize={titleProductsSize} />
+      <Metaq3 dato={'comprame ahora!'} />
       {/* <ButtonsBoots /> */}
       {/* <Featuretail /> */}
     </>
